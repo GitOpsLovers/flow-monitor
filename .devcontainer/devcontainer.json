@@ -1,0 +1,28 @@
+{
+  "build": {
+    "context": "..",
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "sleistner.vscode-fileutils",
+        "eamodio.gitlens",
+        "shd101wyy.markdown-preview-enhanced",
+        "firsttris.vscode-jest-runner",
+        "GitHub.vscode-github-actions",
+        "redhat.vscode-yaml"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "name": "Flow monitor Development container",
+  "runArgs": [
+    "--name", "flow-monitor-devcontainer",
+    "--network", "host"
+  ]
+}
+  

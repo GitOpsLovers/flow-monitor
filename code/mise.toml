@@ -1,2 +1,11 @@
 [tools]
 node = "24.15.0"
+
+[hooks]
+postinstall = "COREPACK_INTEGRITY_KEYS=0 corepack enable pnpm && COREPACK_INTEGRITY_KEYS=0 corepack use pnpm@10.33.0"
+
+[settings]
+experimental = true
+
+[env]
+_.path = ["./node_modules/.bin"]
