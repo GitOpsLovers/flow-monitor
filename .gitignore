@@ -3,3 +3,6 @@ node_modules/
 
 # Cache directories
 .turbo
+
+# Build output directories
+dist/
