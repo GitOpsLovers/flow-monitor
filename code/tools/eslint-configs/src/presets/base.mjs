@@ -9,7 +9,7 @@ import { defineConfig } from 'eslint/config';
  */
 export default defineConfig(
     {
-        ignores: ['.turbo/', 'dist/', 'node_modules/'],
+        ignores: ['.turbo/', 'dist/', 'node_modules/', 'build/'],
     },
     ...jsonConfig,
     ...packageJsonConfig

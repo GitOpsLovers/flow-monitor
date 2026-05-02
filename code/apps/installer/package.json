@@ -1,12 +1,18 @@
 {
-    "name": "@flow-monitor/installer",
-    "type": "module",
-    "scripts": {
-        "build": "node esbuild.config.mjs && pkg build/index.js --config pkg.config.mjs"
-    },
-    "devDependencies": {
-        "@yao-pkg/pkg": "6.19.0",
-        "esbuild": "0.28.0",
-        "typescript": "6.0.3"
-    }
+  "name": "@flow-monitor/installer",
+  "type": "module",
+  "scripts": {
+    "build": "node esbuild.config.mjs && pkg build/index.js --config pkg.config.mjs",
+    "dev": "tsx watch --env-file=.env src/index.ts",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@flow-monitor/eslint-configs": "workspace:*",
+    "@types/node": "25.6.0",
+    "@yao-pkg/pkg": "6.19.0",
+    "esbuild": "0.28.0",
+    "eslint": "10.3.0",
+    "tsx": "4.21.0",
+    "typescript": "6.0.3"
+  }
 }
