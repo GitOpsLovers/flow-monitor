@@ -1,0 +1,11 @@
+{
+    "name": "@flow-monitor/backend",
+    "scripts": {},
+    "dependencies": {
+        "express": "5.2.1"
+    },
+    "devDependencies": {
+        "tsx": "4.21.0",
+        "typescript": "6.0.3"
+    }
+}
