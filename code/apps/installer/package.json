@@ -1,0 +1,9 @@
+{
+    "name": "@flow-monitor/installer",
+    "scripts": {
+        "build": "pkg src/index.js --config pkg.config.mjs"
+    },
+    "devDependencies": {
+        "@yao-pkg/pkg": "6.19.0"
+    }
+}
