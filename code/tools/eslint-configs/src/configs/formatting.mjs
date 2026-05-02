@@ -13,6 +13,7 @@ const formattingConfig = [
         files: JS_TS_FILES,
         rules: {
             'block-spacing': 'error',
+            'comma-spacing': ['error', { before: false, after: true }],
             'comma-style': ['error', 'last', {
                 exceptions: {
                     ArrayExpression: false,
