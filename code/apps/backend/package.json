@@ -1,18 +1,18 @@
 {
-    "name": "@flow-monitor/backend",
-    "scripts": {
-        "build": "node esbuild.config.mjs",
-        "dev": "tsx watch src/index.ts",
-        "lint": "eslint ."
-    },
-    "dependencies": {
-        "express": "5.2.1"
-    },
-    "devDependencies": {
-        "@flow-monitor/eslint-configs": "workspace:*",
-        "esbuild": "0.28.0",
-        "eslint": "10.3.0",
-        "tsx": "4.21.0",
-        "typescript": "6.0.3"
-    }
+  "name": "@flow-monitor/backend",
+  "scripts": {
+    "build": "node esbuild.config.mjs",
+    "dev": "tsx watch src/index.ts",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "express": "5.2.1"
+  },
+  "devDependencies": {
+    "@flow-monitor/eslint-configs": "workspace:*",
+    "esbuild": "0.28.0",
+    "eslint": "10.3.0",
+    "tsx": "4.21.0",
+    "typescript": "6.0.3"
+  }
 }

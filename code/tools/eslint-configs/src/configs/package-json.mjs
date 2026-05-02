@@ -1,0 +1,62 @@
+import * as jsoncParser from 'jsonc-eslint-parser';
+import jsonc from 'eslint-plugin-jsonc';
+
+/**
+ * Configuration for package.json files
+ */
+const packageJsonConfig = [
+  {
+    files: ['**/package.json'],
+    languageOptions: {
+      parser: jsoncParser,
+    },
+    plugins: {
+      jsonc,
+    },
+    rules: {
+      'jsonc/indent': ['error', 2],
+      'jsonc/key-spacing': ['error', { beforeColon: false, afterColon: true }],
+      'jsonc/object-curly-spacing': ['error', 'always'],
+      'jsonc/array-bracket-spacing': ['error', 'never'],
+      'jsonc/comma-dangle': ['error', 'never'],
+      'jsonc/quotes': ['error', 'double'],
+      'jsonc/sort-keys': ['error', {
+        pathPattern: '^$',
+        order: [
+          'name',
+          'version',
+          'description',
+          'private',
+          'type',
+          'keywords',
+          'homepage',
+          'repository',
+          'bugs',
+          'author',
+          'contributors',
+          'license',
+          'funding',
+          'main',
+          'module',
+          'types',
+          'exports',
+          'files',
+          'bin',
+          'scripts',
+          'dependencies',
+          'devDependencies',
+          'peerDependencies',
+          'optionalDependencies',
+          'bundledDependencies',
+          'engines',
+          'os',
+          'cpu',
+          'workspaces',
+          'packageManager',
+        ],
+      }],
+    },
+  },
+];
+
+export default packageJsonConfig;
