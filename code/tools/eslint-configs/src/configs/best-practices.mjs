@@ -1,0 +1,71 @@
+const JS_TS_FILES = ['**/*.{js,mjs,ts}'];
+
+/**
+ * Configuration for best practices
+ */
+const bestPracticesConfig = [
+    {
+        files: JS_TS_FILES,
+        rules: {
+            'array-callback-return': ['error', { allowImplicit: true }],
+            'block-scoped-var': 'error',
+            curly: ['error', 'multi-line'],
+            eqeqeq: ['error', 'always', { null: 'ignore' }],
+            'guard-for-in': 'error',
+            'no-alert': 'error',
+            'no-caller': 'error',
+            'no-case-declarations': 'error',
+            'no-console': 'off',
+            'no-continue': 'off',
+            'no-debugger': 'error',
+            'no-else-return': ['error', { allowElseIf: false }],
+            'no-empty-pattern': 'error',
+            'no-eval': 'error',
+            'no-extend-native': 'error',
+            'no-extra-bind': 'error',
+            'no-extra-label': 'error',
+            'no-fallthrough': 'error',
+            'no-global-assign': ['error', { exceptions: [] }],
+            'no-implied-eval': 'error',
+            'no-iterator': 'error',
+            'no-labels': ['error', { allowLoop: false, allowSwitch: false }],
+            'no-lone-blocks': 'error',
+            'no-lonely-if': 'error',
+            'no-loop-func': 'error',
+            'no-multi-assign': 'error',
+            'no-multi-str': 'error',
+            'no-new': 'error',
+            'no-new-object': 'error',
+            'no-new-func': 'error',
+            'no-new-wrappers': 'error',
+            'no-octal': 'error',
+            'no-octal-escape': 'error',
+            'no-param-reassign': ['error', {
+                props: true,
+                ignorePropertyModificationsFor: [
+                    'acc', 'accumulator', 'e', 'ctx', 'context', 'req', 'request', 'res', 'response', '$scope', 'staticContext',
+                ],
+            }],
+            'no-proto': 'error',
+            'no-redeclare': 'error',
+            'no-return-assign': ['error', 'always'],
+            'no-return-await': 'error',
+            'no-script-url': 'error',
+            'no-self-assign': ['error', { props: true }],
+            'no-self-compare': 'error',
+            'no-sequences': 'error',
+            'no-throw-literal': 'off',
+            'no-unused-labels': 'error',
+            'no-useless-catch': 'error',
+            'no-useless-concat': 'error',
+            'no-useless-escape': 'error',
+            'no-useless-return': 'error',
+            'no-void': 'error',
+            'no-with': 'error',
+            'vars-on-top': 'error',
+            'wrap-iife': ['error', 'outside', { functionPrototypeMethods: false }],
+        },
+    },
+];
+
+export default bestPracticesConfig;
