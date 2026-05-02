@@ -1,9 +1,12 @@
 {
     "name": "@flow-monitor/installer",
+    "type": "module",
     "scripts": {
-        "build": "pkg src/index.js --config pkg.config.mjs"
+        "build": "node esbuild.config.mjs && pkg build/index.js --config pkg.config.mjs"
     },
     "devDependencies": {
-        "@yao-pkg/pkg": "6.19.0"
+        "@yao-pkg/pkg": "6.19.0",
+        "esbuild": "0.28.0",
+        "typescript": "6.0.3"
     }
 }

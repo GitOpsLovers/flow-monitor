@@ -45,6 +45,12 @@ importers:
       '@yao-pkg/pkg':
         specifier: 6.19.0
         version: 6.19.0
+      esbuild:
+        specifier: 0.28.0
+        version: 0.28.0
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
 
   tools/eslint-configs:
     dependencies:

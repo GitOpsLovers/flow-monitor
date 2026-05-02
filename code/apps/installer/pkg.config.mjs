@@ -1,5 +1,5 @@
 export default {
-  scripts: 'src/**/*.js',
+  scripts: 'build/**/*.js',
   targets: ['node24-linux-x64'],
   outputPath: 'dist',
 };
