@@ -6,6 +6,7 @@ import styleConfig from '../configs/style.mjs';
 import jsdocConfig from '../configs/jsdoc.mjs';
 import formattingConfig from '../configs/formatting.mjs';
 import typescriptConfig from '../configs/typescript.mjs';
+import importsConfig from '../configs/imports.mjs';
 import { defineConfig } from 'eslint/config';
 
 /**
