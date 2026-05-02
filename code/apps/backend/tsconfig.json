@@ -1,6 +1,8 @@
 {
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
+
+    // Path Aliases
     "declaration": true,
     "declarationMap": true,
     "exactOptionalPropertyTypes": true,
@@ -12,12 +14,15 @@
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
+    "module": "preserve",
 
     "moduleDetection": "force",
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,
     "noUncheckedSideEffectImports": true,
+    "paths": {
+      "@features/*": ["./src/features/*"]
+    },
     "skipLibCheck": true,
     // For nodejs:
     // "lib": ["esnext"],
