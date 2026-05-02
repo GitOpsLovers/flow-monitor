@@ -1,3 +1,5 @@
+import preferArrow from 'eslint-plugin-prefer-arrow'
+
 const JS_TS_FILES = ['**/*.{js,mjs,ts}'];
 
 /**
@@ -5,6 +7,9 @@ const JS_TS_FILES = ['**/*.{js,mjs,ts}'];
  */
 const styleConfig = [
     {
+        plugins: {
+            'prefer-arrow': preferArrow,
+        },
         files: JS_TS_FILES,
         rules: {
             camelcase: ['error', { properties: 'never', ignoreDestructuring: false }],
@@ -37,6 +42,15 @@ const styleConfig = [
             'quote-props': ['error', 'as-needed', { keywords: false, unnecessary: true, numbers: false }],
             radix: ['error', 'as-needed'],
             yoda: 'error',
+            'prefer-arrow/prefer-arrow-functions': [
+                'error',
+                {
+                    allowStandaloneDeclarations: true,
+                    disallowPrototype: true,
+                    singleReturnOnly: false,
+                    classPropertiesAllowed: false,
+                },
+            ],
         },
     },
 ];

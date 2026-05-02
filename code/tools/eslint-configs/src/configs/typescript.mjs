@@ -6,7 +6,7 @@ const TS_FILES = ['**/*.ts'];
  * Configuration for TypeScript
  */
 const typescriptConfig = [
-    ...tseslint.configs.recommended,
+    ...tseslint.configs.strict,
     ...tseslint.configs.stylistic,
 ].map(config => ({
     ...config,
