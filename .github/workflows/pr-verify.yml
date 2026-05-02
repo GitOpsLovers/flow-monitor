@@ -1,0 +1,32 @@
+name: PR Verify
+
+on:
+  pull_request:
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6.0.2
+
+      - name: Setup pnpm 
+        uses: pnpm/action-setup@v6.0.4
+        with:
+          package_json_file: code/package.json
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6.4.0
+        with:
+          node-version: "24.15.0"
+          cache: pnpm
+          cache-dependency-path: code/pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        working-directory: code
+
+      - name: Lint
+        run: pnpm run lint
+        working-directory: code
