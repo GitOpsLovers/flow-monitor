@@ -1,0 +1,22 @@
+name: "Create release"
+description: "Trigger a new release"
+title: "release: new version"
+labels: ["release"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Opening this issue will trigger the release workflow.
+        The version will be determined automatically based on conventional commits.
+  - type: dropdown
+    id: type
+    attributes:
+      label: Release type
+      description: "Override semantic-release version bump (optional)"
+      options:
+        - auto (based on commits)
+        - patch
+        - minor
+        - major
+    validations:
+      required: true
