@@ -1,6 +1,7 @@
 import { createHmac, timingSafeEqual } from 'crypto'
 
 import { type Request, type Response, type NextFunction } from 'express'
+import { StatusCodes } from 'http-status-codes';
 
 const GITHUB_WEBHOOK_SECRET = process.env.GITHUB_WEBHOOK_SECRET ?? ''
 
@@ -11,7 +12,7 @@ export function verifyGithubWebhook(req: Request, res: Response, next: NextFunct
     const signature = req.headers['x-hub-signature-256']
 
     if (!signature || typeof signature !== 'string') {
-        res.status(401).json({ error: 'Missing signature' })
+        res.status(StatusCodes.UNAUTHORIZED).json({ error: 'Missing signature' })
         return
     }
 
@@ -22,7 +23,7 @@ export function verifyGithubWebhook(req: Request, res: Response, next: NextFunct
     const digestBuffer = Buffer.from(digest)
 
     if (signatureBuffer.length !== digestBuffer.length || !timingSafeEqual(signatureBuffer, digestBuffer)) {
-        res.status(401).json({ error: 'Invalid signature' })
+        res.status(StatusCodes.UNAUTHORIZED).json({ error: 'Invalid signature' })
         return
     }
 
