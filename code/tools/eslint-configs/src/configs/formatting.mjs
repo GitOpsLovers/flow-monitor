@@ -78,6 +78,7 @@ const formattingConfig = [
                 classes: 'never',
                 switches: 'never',
             }, { allowSingleLineBlocks: true }],
+            semi: ['error', 'always'],
             'semi-spacing': ['error', { before: false, after: true }],
             'semi-style': ['error', 'last'],
             'space-before-blocks': 'error',

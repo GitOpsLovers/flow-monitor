@@ -1,11 +1,11 @@
-import { type Router as RouterType, Router } from 'express'
+import { type Router as RouterType, Router } from 'express';
 
-import { verifyGithubWebhook } from '../middlewares/verify-github-webhook.middleware'
+import { verifyGithubWebhook } from '../middlewares/verify-github-webhook.middleware';
 
-const webhooksRouter: RouterType = Router()
+const webhooksRouter: RouterType = Router();
 
 webhooksRouter.get('/', verifyGithubWebhook, (req, res) => {
-    res.send('Birds home page')
-})
+    res.send('Birds home page');
+});
 
-export { webhooksRouter }
+export { webhooksRouter };
