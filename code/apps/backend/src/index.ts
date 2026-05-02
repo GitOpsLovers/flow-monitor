@@ -1,5 +1,15 @@
 import express from 'express';
+
+import { checkRequiredEnvVariables } from '@core/infrastructure/express/env-config.express';
 import { webhooksRouter } from '@features/webhooks/ui/routes/webhooks.routes';
+
+// Check for required environment variables
+const requiredEnvVars = [
+    'PORT',
+    'GITHUB_WEBHOOK_SECRET'
+];
+
+checkRequiredEnvVariables(requiredEnvVars);
 
 const app = express()
 const port = process.env['PORT'] ?? 3000

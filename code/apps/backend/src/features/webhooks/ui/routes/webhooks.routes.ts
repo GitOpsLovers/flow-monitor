@@ -1,4 +1,5 @@
 import { type Router as RouterType, Router } from 'express'
+
 import { verifyGithubWebhook } from '../middlewares/verify-github-webhook.middleware'
 
 const webhooksRouter: RouterType = Router()

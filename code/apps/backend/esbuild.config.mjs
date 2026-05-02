@@ -7,6 +7,7 @@ await build({
     format: "esm",
     outdir: "dist",
     alias: {
-        "@features": "./src/features",
+        "@core": "./src/core",
+        "@features": "./src/features"
     },
 });

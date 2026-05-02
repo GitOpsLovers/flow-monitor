@@ -19,4 +19,5 @@ export default defineConfig(
     ...formattingConfig,
     ...jsdocConfig,
     ...typescriptConfig,
+    ...importsConfig,
 );
