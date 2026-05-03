@@ -54,7 +54,7 @@ function checkAndInstallDependencies(): void {
 function downloadDockerCompose(): void {
     console.log('📥 Downloading docker-compose.yml...');
     execSync(
-        `curl -fsSL ${REPO_RAW_URL}/docker-compose.yml -o ./docker-compose.yml`,
+        `curl -fsSL ${REPO_RAW_URL}/code/deploy/docker-compose.yml -o ./docker-compose.yml`,
         { stdio: 'inherit' },
     );
     console.log('✅ docker-compose.yml downloaded');
