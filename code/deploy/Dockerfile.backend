@@ -2,13 +2,13 @@ FROM node:24.15.0-alpine3.22 AS builder
 
 WORKDIR /app
 
+RUN npm install -g pnpm
+
 COPY package.json ./
-
 COPY esbuild.config.mjs ./
-
 COPY src ./src
 
-RUN npm install --ignore-scripts
+RUN pnpm install --ignore-scripts
 
 RUN node esbuild.config.mjs
 
