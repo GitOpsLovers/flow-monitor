@@ -12,7 +12,7 @@ export default {
             '@semantic-release/github', {
                 assets: [
                     {
-                        path: 'code/apps/installer/dist/*',
+                        path: 'apps/installer/dist/*',
                         label: 'Installer (${nextRelease.version})'
                     },
                 ],
