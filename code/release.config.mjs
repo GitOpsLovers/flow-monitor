@@ -10,10 +10,7 @@ export default {
         ],
         [
             '@semantic-release/exec', {
-                prepareCmd: [
-                    'sed -i "s/VERSION=\\".*\\"/VERSION=\\"v${nextRelease.version}\\"/" ./deploy/install.sh',
-                    'sed -i "s|ghcr.io/gitopslovers/flow-monitor-backend:.*|ghcr.io/gitopslovers/flow-monitor-backend:v${nextRelease.version}|" ./deploy/docker-compose.yml',
-                ].join(' && '),
+                prepareCmd: 'sed -i "s/VERSION=\\".*\\"/VERSION=\\"v${nextRelease.version}\\"/" ./deploy/install.sh && sed -i "s|ghcr.io/gitopslovers/flow-monitor-backend:.*|ghcr.io/gitopslovers/flow-monitor-backend:v${nextRelease.version}|" ./deploy/docker-compose.yml',
             }
         ],
         [
@@ -32,6 +29,7 @@ export default {
                 assets: [
                     'CHANGELOG.md',
                     'deploy/install.sh',
+                    'deploy/docker-compose.yml',
                 ],
                 message: 'chore(release): ${nextRelease.version} [skip ci]',
             }
