@@ -65,7 +65,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
             context: code/apps/backend
-            file: deploy/Dockerfile.backend
+            file: code/deploy/Dockerfile.backend
             push: true
             tags: |
               ghcr.io/${{ steps.owner.outputs.name }}/flow-monitor-backend:latest
