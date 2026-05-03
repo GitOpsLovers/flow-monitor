@@ -8,9 +8,9 @@ COPY package.json ./
 COPY esbuild.config.mjs ./
 COPY src ./src
 
-RUN pnpm install --ignore-scripts
+RUN pnpm install --prod --ignore-scripts
 
-RUN node esbuild.config.mjs
+RUN npx esbuild --bundle --platform=node --format=esm --outdir=dist src/index.ts
 
 FROM node:24.15.0-alpine3.22
 
