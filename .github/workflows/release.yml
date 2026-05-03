@@ -13,6 +13,7 @@ jobs:
       contents: write
       issues: write
       pull-requests: write
+      packages: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v6.0.2
@@ -45,21 +46,36 @@ jobs:
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Close issue
+      - name: Get version
+        id: version
+        run: echo "version=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push backend image
+        uses: docker/build-push-action@v6
+        with:
+          context: code/apps/backend
+          file: deploy/Dockerfile.backend
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/flow-monitor-backend:latest
+            ghcr.io/${{ github.repository_owner }}/flow-monitor-backend:${{ steps.version.outputs.version }}
+
+      - name: Update issue title
         if: success()
         uses: actions/github-script@v7
         with:
           script: |
+            const version = '${{ steps.version.outputs.version }}';
             await github.rest.issues.update({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              state: 'closed',
-              state_reason: 'completed'
-            });
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              body: '✅ Release completed successfully!'
+              title: `Release ${version} created`,
             });

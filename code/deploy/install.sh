@@ -16,6 +16,6 @@ fi
 
 chmod +x "$BINARY"
 
-./"$BINARY"
+./"$BINARY" --version "$VERSION"
 
 rm "$BINARY"

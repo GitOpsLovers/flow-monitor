@@ -1,6 +1,14 @@
 import { execSync } from 'child_process';
+import { parseArgs } from 'util';
 
-const REPO_RAW_URL = 'https://raw.githubusercontent.com/tu-usuario/flow-monitor/main';
+const { values } = parseArgs({
+    args: process.argv.slice(2),
+    options: {
+        version: { type: 'string', default: 'main' },
+    },
+});
+
+const REPO_RAW_URL = `https://raw.githubusercontent.com/GitOpsLovers/flow-monitor/${values.version}`;
 
 function commandExists(command: string): boolean {
     try {
@@ -12,12 +20,12 @@ function commandExists(command: string): boolean {
 }
 
 function installDocker(): void {
-    console.log('🐳 Docker no encontrado, instalando...');
+    console.log('🐳 Docker not found, installing...');
     execSync('curl -fsSL https://get.docker.com | sh', { stdio: 'inherit' });
 }
 
 function installDockerCompose(): void {
-    console.log('🐳 Docker Compose no encontrado, instalando...');
+    console.log('🐳 Docker Compose not found, installing...');
     execSync(
         'curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose',
         { stdio: 'inherit' },
@@ -26,45 +34,46 @@ function installDockerCompose(): void {
 }
 
 function checkAndInstallDependencies(): void {
-    console.log('🔍 Comprobando dependencias...');
+    console.log('🔍 Checking dependencies...');
 
     if (!commandExists('docker')) {
         installDocker();
     } else {
-        console.log('✅ Docker encontrado');
+        console.log('✅ Docker found');
     }
 
     if (!commandExists('docker-compose')) {
         installDockerCompose();
     } else {
-        console.log('✅ Docker Compose encontrado');
+        console.log('✅ Docker Compose found');
     }
 }
 
 function downloadDockerCompose(): void {
-    console.log('📥 Descargando docker-compose.yml...');
+    console.log('📥 Downloading docker-compose.yml...');
     execSync(
         `curl -fsSL ${REPO_RAW_URL}/docker-compose.yml -o ./docker-compose.yml`,
         { stdio: 'inherit' },
     );
-    console.log('✅ docker-compose.yml descargado');
+    console.log('✅ docker-compose.yml downloaded');
 }
 
 async function runInstaller() {
-    console.log('🚀 Iniciando instalador de @flow-monitor...');
+    console.log('Launching Flow Monitor installation...');
 
     // 1. Checks
     checkAndInstallDependencies();
 
-    // 2. Descargar docker-compose.yml
+    // 2. Download docker-compose.yml
     downloadDockerCompose();
 
-    // 3. Levantar todo
-    console.log('📦 Levantando contenedores...');
+    // 3. Start containers
+    console.log('📦 Starting containers...');
+
     execSync('docker-compose up -d', { stdio: 'inherit' });
 
-    console.log('✅ ¡Instalación completada!');
-    console.log('🔗 Configura tu App en: http://tu-ip:3000/setup');
+    console.log('✅ Installation completed!');
+    console.log('🔗 Configure your App at: http://your-ip:3000/setup');
 }
 
 runInstaller();

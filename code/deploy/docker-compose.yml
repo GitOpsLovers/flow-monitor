@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  backend:
+    image: gitopslovers/flow-monitor-backend:latest
+    container_name: flow-monitor-backend
+    restart: always
+    ports:
+      - "${PORT:-3000}:3000"
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - flow-monitor-network
+
+  db:
+    image: postgres:15-alpine
+    container_name: flow-monitor-db
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER:-admin}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-password_seguro}
+      POSTGRES_DB: ${DB_NAME:-flow_metrics}
+    volumes:
+      - flow_monitor_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-admin} -d ${DB_NAME:-flow_metrics}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - flow-monitor-network
+
+networks:
+  flow-monitor-network:
+    driver: bridge
+
+volumes:
+  flow_monitor_data:

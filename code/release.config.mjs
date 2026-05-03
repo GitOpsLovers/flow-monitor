@@ -10,7 +10,7 @@ export default {
         ],
         [
             '@semantic-release/exec', {
-                prepareCmd: 'sed -i "s/VERSION=\\".*\\"/VERSION=\\"v${nextRelease.version}\\"/" ./install.sh',
+                prepareCmd: 'sed -i "s/VERSION=\\".*\\"/VERSION=\\"v${nextRelease.version}\\"/" ./deploy/install.sh',
             }
         ],
         [
@@ -28,7 +28,7 @@ export default {
             '@semantic-release/git', {
                 assets: [
                     'CHANGELOG.md',
-                    'install.sh',
+                    'deploy/install.sh',
                 ],
                 message: 'chore(release): ${nextRelease.version} [skip ci]',
             }

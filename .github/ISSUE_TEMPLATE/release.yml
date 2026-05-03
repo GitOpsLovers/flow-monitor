@@ -1,6 +1,6 @@
 name: "Create release"
-description: "Trigger a new release"
-title: "release: new version"
+description: "Issue to create a new release of the application."
+title: "Create new release"
 labels: ["release"]
 body:
   - type: markdown
