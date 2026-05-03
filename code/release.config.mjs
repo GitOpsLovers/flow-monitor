@@ -9,11 +9,16 @@ export default {
             }
         ],
         [
+            '@semantic-release/exec', {
+                prepareCmd: 'sed -i "s/VERSION=\\".*\\"/VERSION=\\"v${nextRelease.version}\\"/" ./install.sh',
+            }
+        ],
+        [
             '@semantic-release/github', {
                 assets: [
                     {
                         path: 'apps/installer/dist/*',
-                        name: 'flow-monitor-installer-${nextRelease.version}',
+                        name: 'flow-monitor-installer',
                         label: 'Installer (${nextRelease.version})'
                     },
                 ],
@@ -23,6 +28,7 @@ export default {
             '@semantic-release/git', {
                 assets: [
                     'CHANGELOG.md',
+                    'install.sh',
                 ],
                 message: 'chore(release): ${nextRelease.version} [skip ci]',
             }

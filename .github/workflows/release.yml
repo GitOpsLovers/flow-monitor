@@ -40,7 +40,7 @@ jobs:
         working-directory: code
 
       - name: Semantic Release
-        run: npx --package @semantic-release/changelog --package @semantic-release/git --package @semantic-release/commit-analyzer --package @semantic-release/release-notes-generator --package @semantic-release/github semantic-release
+        run: npx --package @semantic-release/changelog --package @semantic-release/git --package @semantic-release/commit-analyzer --package @semantic-release/release-notes-generator --package @semantic-release/github --package @semantic-release/exec semantic-release
         working-directory: code
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
