@@ -1,4 +1,6 @@
 import { execSync } from 'child_process';
+import { randomBytes } from 'crypto';
+import { writeFileSync } from 'fs';
 import { parseArgs } from 'util';
 
 const { values } = parseArgs({
@@ -58,6 +60,26 @@ function downloadDockerCompose(): void {
     console.log('✅ docker-compose.yml downloaded');
 }
 
+function createEnvFile(): void {
+    console.log('🔐 Generating environment configuration...');
+
+    const webhookSecret = randomBytes(32).toString('hex');
+    const dbPassword = randomBytes(16).toString('hex');
+
+    // Construimos el contenido del .env
+    const envContent = [
+        `PORT=3000`,
+        `GITHUB_WEBHOOK_SECRET=${webhookSecret}`,
+        `DB_PASSWORD=${dbPassword}`,
+        `DATABASE_URL=postgres://admin:${dbPassword}@db:5432/flow_metrics`,
+        `NODE_ENV=production`
+    ].join('\n');
+
+    // Lo guardamos en el directorio actual (.)
+    writeFileSync('./.env', envContent, { encoding: 'utf8' });
+    console.log('✅ .env file created successfully.');
+}
+
 async function runInstaller() {
     console.log('Launching Flow Monitor installation...');
 
@@ -67,7 +89,10 @@ async function runInstaller() {
     // 2. Download docker-compose.yml
     downloadDockerCompose();
 
-    // 3. Start containers
+    // 3. Create .env file
+    createEnvFile();
+
+    // 4. Start containers
     console.log('📦 Starting containers...');
 
     execSync('docker-compose up -d', { stdio: 'inherit' });

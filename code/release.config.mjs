@@ -10,7 +10,10 @@ export default {
         ],
         [
             '@semantic-release/exec', {
-                prepareCmd: 'sed -i "s/VERSION=\\".*\\"/VERSION=\\"v${nextRelease.version}\\"/" ./deploy/install.sh',
+                prepareCmd: [
+                    'sed -i "s/VERSION=\\".*\\"/VERSION=\\"v${nextRelease.version}\\"/" ./deploy/install.sh',
+                    'sed -i "s|flow-monitor-backend:.*|flow-monitor-backend:v${nextRelease.version}|" ./deploy/docker-compose.yml',
+                ],
             }
         ],
         [
