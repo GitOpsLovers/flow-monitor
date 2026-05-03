@@ -13,6 +13,7 @@ export default {
                 assets: [
                     {
                         path: 'apps/installer/dist/*',
+                        name: 'flow-monitor-installer-${nextRelease.version}',
                         label: 'Installer (${nextRelease.version})'
                     },
                 ],
