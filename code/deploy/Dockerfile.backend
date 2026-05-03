@@ -1,0 +1,23 @@
+FROM node:24.15.0-alpine3.22 AS builder
+
+WORKDIR /app
+
+COPY package.json ./
+
+COPY esbuild.config.mjs ./
+
+COPY src ./src
+
+RUN npm install --ignore-scripts
+
+RUN node esbuild.config.mjs
+
+FROM node:24.15.0-alpine3.22
+
+WORKDIR /app
+
+COPY --from=builder /app/dist/index.js ./index.js
+
+EXPOSE 3000
+
+CMD ["node", "index.js"]
