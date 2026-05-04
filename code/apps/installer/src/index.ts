@@ -66,7 +66,6 @@ function createEnvFile(): void {
     const webhookSecret = randomBytes(32).toString('hex');
     const dbPassword = randomBytes(16).toString('hex');
 
-    // Construimos el contenido del .env
     const envContent = [
         `PORT=3000`,
         `GITHUB_WEBHOOK_SECRET=${webhookSecret}`,
@@ -75,11 +74,25 @@ function createEnvFile(): void {
         `NODE_ENV=production`
     ].join('\n');
 
-    // Lo guardamos en el directorio actual (.)
     writeFileSync('./.env', envContent, { encoding: 'utf8' });
     console.log('✅ .env file created successfully.');
 }
 
+function getServerIp(): string {
+    try {
+        const ip = execSync(
+            "ip route get 1.1.1.1 | awk '{print $7; exit}'",
+            { encoding: 'utf8' },
+        ).trim();
+        return ip || 'your-ip';
+    } catch {
+        return 'your-ip';
+    }
+}
+
+/**
+ * Installer application
+ */
 async function runInstaller() {
     console.log('Launching Flow Monitor installation...');
 
@@ -98,7 +111,11 @@ async function runInstaller() {
     execSync('docker-compose up -d', { stdio: 'inherit' });
 
     console.log('✅ Installation completed!');
-    console.log('🔗 Configure your App at: http://your-ip:3000/setup');
+
+    // 5. Output access information
+    const serverIp = getServerIp();
+
+    console.log(`\n🔗 Configure your App at: https://${serverIp}:3000/setup`);
 }
 
 runInstaller();
